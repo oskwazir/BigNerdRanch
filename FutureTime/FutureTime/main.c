@@ -9,14 +9,15 @@
 #include <stdio.h>
 #include <time.h>
 
+
 int main(int argc, const char * argv[]) {
-    long epoch = time(NULL);
-    printf("time since epoch %ld\n",epoch);
+    long secondsSince1970 = time(NULL);
+    long fourMillionSecondsFromNow = secondsSince1970 + 4000000;
     
     struct tm now;
     
-    localtime_r(&epoch, &now);
+    localtime_r(&fourMillionSecondsFromNow, &now);
     
-    printf("The time is %d:%d:%d\n",now.tm_hour,now.tm_min,now.tm_sec);
+    printf("The date in 4 million seconds will be %d-%d-%d\n",now.tm_mon+1,now.tm_mday,now.tm_year+1900);
     return 0;
 }
