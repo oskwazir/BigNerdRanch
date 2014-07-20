@@ -10,7 +10,7 @@
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        NSDate *now = [NSDate date];
+        NSDate *now = [[NSDate alloc] init];
         NSLog(@"This NSDate object lives at %p",now);
         NSLog(@"The date is %@", now);
         
@@ -20,6 +20,16 @@ int main(int argc, const char * argv[]) {
         NSDate *later = [now dateByAddingTimeInterval:100000];
         NSLog(@"In 100,000 seconds the time will be %@",later);
         
-    }
+        NSCalendar *calendar = [NSCalendar currentCalendar];
+        NSLog(@"My calendar is %@",calendar);
+        
+        // NSDayCalendarUnit & NSMonthCalendarUnit are deprecated in iOS 8.0
+        unsigned long day = [calendar ordinalityOfUnit:NSDayCalendarUnit
+                                                inUnit:NSMonthCalendarUnit
+                                               forDate:now];
+         
+        NSLog(@"This is the day %lu of the month.",day);
+        
+            }
     return 0;
 }
