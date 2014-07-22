@@ -13,14 +13,19 @@ int main(int argc, const char * argv[]) {
         NSDate *now = [[NSDate alloc] init];
         NSDate *tomorrow = [now dateByAddingTimeInterval:24 * 60 * 60];
         NSDate *yesterday = [now dateByAddingTimeInterval: -24.0 * 60 * 60];
-        NSArray *dateList = @[now,tomorrow,yesterday];
+        NSMutableArray *dateList = [NSMutableArray array];
         
-        NSLog(@"The second date is %@",dateList[1]);
-        NSLog(@"There are %lu dates in the array",[dateList count]);
+        [dateList addObject:now];
+        [dateList addObject:tomorrow];
+        [dateList insertObject:yesterday atIndex:0];
         
         for(NSDate *date in dateList){
             NSLog(@"Here is the date %@",date);
         }
+        
+        //Remove yesterday
+        [dateList removeObjectAtIndex:0];
+        NSLog(@"Now the first date is %@",dateList[0]);
     }
     return 0;
 }
