@@ -27,7 +27,8 @@
 }
 
 -(float) bodyMassIndex{
-    return _weightInKilos / (_heightInMeters * _heightInMeters);
+    float height = [self heightInMeters];
+    return [self weightInKilos] / (height * height);
 }
 
 
