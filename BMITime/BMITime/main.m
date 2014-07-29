@@ -8,26 +8,53 @@
 
 #import <Foundation/Foundation.h>
 #import "BNREmployee.h"
+#import "BNRAsset.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        BNREmployee *dragonSpider = [[BNREmployee alloc] init];
-        [dragonSpider setHeightInMeters:253.4];
-        [dragonSpider setWeightInKilos:5174];
-        [dragonSpider setEmployeedID:4401];
-        [dragonSpider setHireDate:[NSDate dateWithNaturalLanguageString:@"Aug 2nd,2010"]];
+     
+        //Create an array of employees
+        NSMutableArray *employees = [[NSMutableArray alloc] init];
         
-        //log the instance variables using the getters
-        float height = [dragonSpider heightInMeters];
-        int weight = [dragonSpider weightInKilos];
+        for(int i =0; i < 10; i++){
+            BNREmployee *zabaleta = [[BNREmployee alloc] init];
+            
+            //give the instance interesting values
+            [zabaleta setWeightInKilos:(90 + i)];
+            [zabaleta setHeightInMeters:((1.9 - i) / 10)];
+            [zabaleta setEmployeedID:(1000 + i)];
+            
+            [employees addObject:zabaleta];
+        }
         
-        NSLog(@"%@ hired on %@",dragonSpider,[dragonSpider hireDate]);
+        //Create 10 assets
+        for (int i = 0; i < 10; i++) {
+            BNRAsset *asset = [[BNRAsset alloc] init];
+            
+            NSString *label = [NSString stringWithFormat:@"Laptop %d",i];
+            [asset setLabel:label];
+            
+            [asset setResaleValue:(350 + i * 17)];
+            
+            //Get a random number between 0 and 9 inclusive
+            NSUInteger randomIndex = random() % [employees count];
+            
+            //Find that employeed
+            BNREmployee *randomEmployee = [employees objectAtIndex:randomIndex];
+            
+            //Assign the asset to the employee
+            [randomEmployee addAsset:asset];
+        }
         
-        NSLog(@"DragonSpider is %.2f meters tall and weighs %d kilos.", height, weight);
+        NSLog(@"%@",employees);
         
-        NSLog(@"Employee %u hired on %@",[dragonSpider employeedID],[dragonSpider hireDate]);
+        NSLog(@"Giving up ownsership of one employee.");
         
-        NSLog(@"DragonSpider has a BMI of %.2f and has worked with us for %.2f years",[dragonSpider bodyMassIndex],[dragonSpider yearsOfEmployment]);
+        [employees removeObjectAtIndex:5];
+        
+        NSLog(@"Giving up ownership of employees array.");
+        
+        employees = nil;
         
     }
     return 0;

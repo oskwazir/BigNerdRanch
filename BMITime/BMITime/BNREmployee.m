@@ -62,7 +62,7 @@
 }
 
 -(NSString *) description{
-    return [NSString stringWithFormat:@"Employeed %u: $%u in assets.",[self employeedID],[self valueOfAssets]];
+    return [NSString stringWithFormat:@"Employee %u: $%u in assets.",[self employeedID],[self valueOfAssets]];
 }
 
 -(void) dealloc{
