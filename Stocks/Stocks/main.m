@@ -15,20 +15,20 @@ int main(int argc, const char * argv[]) {
         [amazon setPurchaseSharePrice:86.49];
         [amazon setCurrentSharePrice:324.01];
         [amazon setNumberOfShares:23000];
-        [amazon setNameOfStockTo:@"Amazon"];
+        [amazon setNameOfStock:@"Amazon"];
         
         
         BNRStockHolding *nike = [[BNRStockHolding alloc] init];
         [nike setPurchaseSharePrice:26.08];
         [nike setCurrentSharePrice:77.72];
         [nike setNumberOfShares:34500];
-        [nike setNameOfStockTo:@"Nike"];
+        [nike setNameOfStock:@"Nike"];
         
         BNRStockHolding *starbucks = [[BNRStockHolding alloc] init];
         [starbucks setPurchaseSharePrice:17.70];
         [starbucks setCurrentSharePrice:78.74];
         [starbucks setNumberOfShares:47500];
-        [starbucks setNameOfStockTo:@"Starbucks"];
+        [starbucks setNameOfStock:@"Starbucks"];
         
         NSArray *stockHoldings = @[amazon,nike,starbucks];
         
