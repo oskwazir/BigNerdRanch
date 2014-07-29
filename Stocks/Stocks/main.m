@@ -7,7 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BNRStockHolding.h"
+#import "BNRForeignStockHolding.h"
+
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -30,10 +31,24 @@ int main(int argc, const char * argv[]) {
         [starbucks setNumberOfShares:47500];
         [starbucks setNameOfStock:@"Starbucks"];
         
-        NSArray *stockHoldings = @[amazon,nike,starbucks];
+        BNRForeignStockHolding *toyota = [[BNRForeignStockHolding alloc] init];
+        [toyota setPurchaseSharePrice:3990.00];
+        [toyota setCurrentSharePrice:6136.00];
+        [toyota setNumberOfShares:17500];
+        [toyota setConversionRate:0.0098];
+        [toyota setNameOfStock:@"Toyota Motor Corp"];
+        
+        BNRForeignStockHolding *bmw = [[BNRForeignStockHolding alloc] init];
+        [bmw setPurchaseSharePrice:30.86];
+        [bmw setCurrentSharePrice:92.21];
+        [bmw setNumberOfShares:43750];
+        [bmw setConversionRate:1.34];
+        [bmw setNameOfStock:@"BMW"];
+        
+        NSArray *stockHoldings = @[amazon,nike,starbucks,toyota,bmw];
         
         for(BNRStockHolding *stock in stockHoldings){
-            NSLog(@"%@ was bought for %.2f and is now worth %.2f",[stock nameOfStock],[stock costInDollars],[stock valueInDollars]);
+            NSLog(@"%@ was bought for $%.2f and is now worth $%.2f",[stock nameOfStock],[stock costInDollars],[stock valueInDollars]);
         }
     }
     return 0;
