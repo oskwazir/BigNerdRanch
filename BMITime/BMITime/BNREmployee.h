@@ -21,6 +21,7 @@
 
 -(double) yearsOfEmployment;
 -(void) addAsset: (BNRAsset *)asset;
+-(void) removeAsset: (BNRAsset *)asset;
 -(unsigned int) valueOfAssets;
 
 @end

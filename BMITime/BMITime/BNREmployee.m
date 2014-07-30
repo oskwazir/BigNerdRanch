@@ -12,7 +12,6 @@
 @implementation BNREmployee
 
 // Accessors for assets properties
-
 //We only expose an immutable array but locally use a mutable array.
 -(void) setAssets:(NSArray *)assets{
     _assets = [assets mutableCopy];
@@ -30,6 +29,14 @@
     }
     
     [_assets addObject:asset];
+}
+
+-(void) removeAsset:(BNRAsset *)asset{
+    //If _assets is nil get outta here
+    if(!_assets) return;
+    
+    NSLog(@"%@ is removing asset: %@", self, asset);
+    [_assets removeObject:asset];
 }
 
 -(unsigned int)valueOfAssets{

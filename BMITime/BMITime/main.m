@@ -48,6 +48,12 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"%@",employees);
         
+        NSLog(@"Employee 2 is giving up an asset");
+        BNREmployee *employee2 =[employees objectAtIndex:2];
+        BNRAsset *asset = [[employee2 assets] firstObject];
+        [employee2 removeAsset:asset];
+        
+        
         NSLog(@"Giving up ownsership of one employee.");
         
         [employees removeObjectAtIndex:5];
