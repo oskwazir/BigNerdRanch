@@ -39,6 +39,8 @@
     }
     
     [_assets addObject:asset];
+    
+    [asset setHolder:self];
 }
 
 -(void) removeAsset:(BNRAsset *)asset{
