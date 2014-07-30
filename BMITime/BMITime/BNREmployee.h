@@ -10,12 +10,9 @@
 #import "BNRPerson.h"
 @class BNRAsset;
 
-@interface BNREmployee : BNRPerson{
-    NSMutableArray *_assets;
-}
+@interface BNREmployee : BNRPerson
 
 @property (nonatomic) unsigned int employeedID;
-@property (nonatomic) unsigned int officeAlarmCode;
 @property (nonatomic) NSDate *hireDate;
 @property (nonatomic, copy) NSArray *assets;
 
