@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BNRForeignStockHolding.h"
+#import "BNRPortfolio.h"
 
 
 int main(int argc, const char * argv[]) {
@@ -45,11 +46,20 @@ int main(int argc, const char * argv[]) {
         [bmw setConversionRate:1.34];
         [bmw setNameOfStock:@"BMW"];
         
-        NSArray *stockHoldings = @[amazon,nike,starbucks,toyota,bmw];
+        //NSArray *stockHoldings = @[amazon,nike,starbucks,toyota,bmw];
+        BNRPortfolio *portfolio = [[BNRPortfolio alloc] init];
+        [portfolio addStock:nike];
+        [portfolio addStock:starbucks];
+        [portfolio addStock:toyota];
+        [portfolio addStock:bmw];
         
-        for(BNRStockHolding *stock in stockHoldings){
-            NSLog(@"%@ was bought for $%.2f and is now worth $%.2f",[stock nameOfStock],[stock costInDollars],[stock valueInDollars]);
-        }
+        float valueOfPortfolio = [portfolio valueOfPortfolio];
+        NSLog(@"The current value of the portfolio is $%.2f.", valueOfPortfolio);
+        
+//        for(BNRStockHolding *stock in stockHoldings){
+//            NSLog(@"%@ was bought for $%.2f and is now worth $%.2f",[stock nameOfStock],[stock costInDollars],[stock valueInDollars]);
+//        }
+        
     }
     return 0;
 }
