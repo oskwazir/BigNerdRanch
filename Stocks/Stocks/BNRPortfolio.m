@@ -9,7 +9,9 @@
 #import "BNRPortfolio.h"
 #import "BNRStockHolding.h"
 
-@implementation BNRPortfolio
+@implementation BNRPortfolio{
+    NSMutableArray *_stocks;
+}
 
 //We only expose an immutable array but locally use a mutable array.
 -(void)setStocks:(NSArray *)stocks{
@@ -30,11 +32,17 @@
     [_stocks addObject:stock];
 }
 
+-(void)removeStock:(BNRStockHolding *)stock{
+    //If stocks is nil get outta here
+    if(!_stocks) return;
+    
+    [_stocks removeObject:stock];
+}
+
 -(float)valueOfPortfolio{
     float sum = 0;
     for(int i = 0; i < [_stocks count]; i++){
         sum += [[_stocks objectAtIndex:i] valueInDollars];
-        NSLog(@"Sum is now equal to: %.2f",sum);
     }
     
     return sum;

@@ -55,11 +55,18 @@ int main(int argc, const char * argv[]) {
         
         float valueOfPortfolio = [portfolio valueOfPortfolio];
         NSLog(@"The current value of the portfolio is $%.2f.", valueOfPortfolio);
-        NSArray *stockHoldings = @[amazon,nike,starbucks,toyota,bmw];
         
-        for(BNRStockHolding *stock in stockHoldings){
-            NSLog(@"%@ was bought for $%.2f and is now worth $%.2f",[stock symbol],[stock costInDollars],[stock valueInDollars]);
-        }
+        [portfolio removeStock:bmw];
+        [portfolio removeStock:toyota];
+        
+        float adjustedValueOfPortfolio = [portfolio valueOfPortfolio];
+        NSLog(@"With BMW and Toyota removed from the portfolio the value changed by $%.2f", valueOfPortfolio - adjustedValueOfPortfolio);
+        
+//        NSArray *stockHoldings = @[amazon,nike,starbucks,toyota,bmw];
+//        
+//        for(BNRStockHolding *stock in stockHoldings){
+//            NSLog(@"%@ was bought for $%.2f and is now worth $%.2f",[stock symbol],[stock costInDollars],[stock valueInDollars]);
+//        }
         
     }
     return 0;
