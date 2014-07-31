@@ -55,4 +55,11 @@
     return [_stocks subarrayWithRange:NSMakeRange(0, 3)];
 }
 
+-(NSArray*) alphabeticallySorted{
+    //sort _stocks alphabetically.
+    NSSortDescriptor  *alphabetically = [NSSortDescriptor sortDescriptorWithKey:@"symbol" ascending:YES];
+    [_stocks sortUsingDescriptors:@[alphabetically]];
+    return [_stocks copy];
+}
+
 @end

@@ -57,6 +57,7 @@ int main(int argc, const char * argv[]) {
         NSLog(@"The current value of the portfolio is $%.2f.", valueOfPortfolio);
         
         NSLog(@"Top 3 stock peformers: %@",[portfolio topThreeMostValuableStocks]);
+        NSLog(@"Stocks sorted alphabetically by symbol name. %@",[portfolio alphabeticallySorted]);
         
         [portfolio removeStock:bmw];
         [portfolio removeStock:toyota];

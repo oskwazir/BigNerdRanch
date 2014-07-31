@@ -17,5 +17,6 @@
 -(void) removeStock:(BNRStockHolding *)stock;
 -(float) valueOfPortfolio;
 -(NSArray *) topThreeMostValuableStocks;
+-(NSArray *) alphabeticallySorted;
 
 @end
