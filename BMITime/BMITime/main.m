@@ -27,6 +27,8 @@ int main(int argc, const char * argv[]) {
             [employees addObject:zabaleta];
         }
         
+        NSMutableArray *allAssets = [[NSMutableArray alloc] init];
+        
         //Create 10 assets
         for (int i = 0; i < 10; i++) {
             BNRAsset *asset = [[BNRAsset alloc] init];
@@ -44,22 +46,22 @@ int main(int argc, const char * argv[]) {
             
             //Assign the asset to the employee
             [randomEmployee addAsset:asset];
+            
+            [allAssets addObject:asset];
         }
         
         NSLog(@"%@",employees);
-        
-        NSLog(@"Employee 2 is giving up an asset");
-        BNREmployee *employee2 =[employees objectAtIndex:2];
-        BNRAsset *asset = [[employee2 assets] firstObject];
-        [employee2 removeAsset:asset];
         
         
         NSLog(@"Giving up ownsership of one employee.");
         
         [employees removeObjectAtIndex:5];
         
+        NSLog(@"allAssetes %@",allAssets);
+        
         NSLog(@"Giving up ownership of employees array.");
         
+        allAssets = nil;
         employees = nil;
         
     }
