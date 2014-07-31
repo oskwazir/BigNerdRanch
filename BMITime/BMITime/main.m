@@ -16,6 +16,9 @@ int main(int argc, const char * argv[]) {
         //Create an array of employees
         NSMutableArray *employees = [[NSMutableArray alloc] init];
         
+        //Create a dictionary of executives
+        NSMutableDictionary *executives = [[NSMutableDictionary alloc] init];
+        
         for(int i =0; i < 10; i++){
             BNREmployee *zabaleta = [[BNREmployee alloc] init];
             
@@ -25,6 +28,16 @@ int main(int argc, const char * argv[]) {
             [zabaleta setEmployeedID:(1000 + i)];
             
             [employees addObject:zabaleta];
+            
+            //is this the first employee?
+            if(i == 0){
+                [executives setObject:zabaleta forKey:@"CEO"];
+            }
+            
+            //is this the second employee?
+            if(i == 1){
+                [executives setObject:zabaleta forKey:@"CTO"];
+            }
         }
         
         NSMutableArray *allAssets = [[NSMutableArray alloc] init];
@@ -50,7 +63,21 @@ int main(int argc, const char * argv[]) {
             [allAssets addObject:asset];
         }
         
+        //Sorting the employees array.
+        //FIRST: Create sort descriptors
+        NSSortDescriptor *voa = [NSSortDescriptor sortDescriptorWithKey:@"valueOfAssets" ascending:YES];
+        NSSortDescriptor *eid = [NSSortDescriptor sortDescriptorWithKey:@"employeedID" ascending:YES];
+        
+        //THEN: pass the sort descriptors combined in an array in the order of preference of sorting order
+        // to the array's sortUsingDescriptors: message
+        [employees sortUsingDescriptors:@[voa,eid]];
+        
+        
+        
         NSLog(@"%@",employees);
+        
+        NSLog(@"executives: %@",executives);
+        NSLog(@"CEO:%@",[executives valueForKey:@"CEO"]);
         
         
         NSLog(@"Giving up ownsership of one employee.");
@@ -61,10 +88,10 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"Giving up ownership of employees array.");
         
+        executives = nil;
         allAssets = nil;
         employees = nil;
         
     }
-    sleep(100);
     return 0;
 }
