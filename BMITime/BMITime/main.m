@@ -74,21 +74,26 @@ int main(int argc, const char * argv[]) {
         
         
         
-        NSLog(@"%@",employees);
+        NSLog(@"employees: %@",employees);
         
         NSLog(@"executives: %@",executives);
-        NSLog(@"CEO:%@",[executives valueForKey:@"CEO"]);
+        NSLog(@"CEO: %@",[executives valueForKey:@"CEO"]);
+        executives = nil;
         
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 70"];
+        NSArray * toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+        NSLog(@"toBeReclaimed: %@",toBeReclaimed);
+        toBeReclaimed = nil;
         
         NSLog(@"Giving up ownsership of one employee.");
         
         [employees removeObjectAtIndex:5];
         
-        NSLog(@"allAssetes %@",allAssets);
+        NSLog(@"allAssets: %@",allAssets);
         
         NSLog(@"Giving up ownership of employees array.");
         
-        executives = nil;
+        
         allAssets = nil;
         employees = nil;
         
