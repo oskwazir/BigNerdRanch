@@ -15,7 +15,10 @@ int main(int argc, const char * argv[]) {
         NSLog(@"%d is larger", MAX(10,12));
         
         NSLocale *here = [NSLocale currentLocale];
-        NSString *currency = [here objectForKey:@"currency"];
+        //by using NSLocaleCurrencyCode which is a Global Variable
+        //we get help from XCode and the compiler
+        //if we mispell the key. with a simple string we would not get any value back.
+        NSString *currency = [here objectForKey:NSLocaleCurrencyCode];
         NSLog(@"Money is %@", currency);
     }
     return 0;
