@@ -18,7 +18,7 @@
     _stocks = [stocks mutableCopy];
 }
 
--(NSArray *)assets{
+-(NSArray *)stocks{
     return [_stocks copy];
 }
 
@@ -46,6 +46,13 @@
     }
     
     return sum;
+}
+
+-(NSArray*) topThreeMostValuableStocks{
+    //sort _stocks by valueInDollars.
+    NSSortDescriptor  *valueInDollars = [NSSortDescriptor sortDescriptorWithKey:@"valueInDollars" ascending:NO];
+    [_stocks sortUsingDescriptors:@[valueInDollars]];
+    return [_stocks subarrayWithRange:NSMakeRange(0, 3)];
 }
 
 @end
