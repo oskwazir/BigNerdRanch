@@ -11,7 +11,7 @@
 
 //A class extension
 @interface BNREmployee (){
-    NSMutableArray *_assets;
+    NSMutableSet *_assets;
 }
 
 @property (nonatomic) unsigned int officeAlarmCode;
@@ -23,11 +23,11 @@
 
 // Accessors for assets properties
 //We only expose an immutable array but locally use a mutable array.
--(void) setAssets:(NSArray *)assets{
+-(void) setAssets:(NSSet *)assets{
     _assets = [assets mutableCopy];
 }
 
--(NSArray *) assets{
+-(NSSet *) assets{
     return [_assets copy];
 }
 
@@ -35,7 +35,7 @@
  //Is _assets nil?
     if(!_assets){
         //Create the array
-        _assets = [[NSMutableArray alloc] init];
+        _assets = [[NSMutableSet alloc] init];
     }
     
     [_assets addObject:asset];
