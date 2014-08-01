@@ -14,12 +14,28 @@ int main(int argc, const char * argv[]) {
         for (int i = 0; i < 10; i++) {
             [str appendString:@"Omer is cool!\n"];
         }
-        [str writeToFile:@"/tmp/cool.txt"
+        
+        //Declare a pointer to an NSError object but don't instantiate it
+        //The NSError instance will only be created if there really is an error
+        
+        NSError *error;
+        
+        //Pass the NSError pointer by reference to the NSString method
+        
+       BOOL success = [str writeToFile:@"/tmp/cool.txt"
               atomically:YES
                 encoding:NSUTF8StringEncoding
-                   error:NULL];
+                   error:&error];
         
-        NSLog(@"Done writing to /tmp/cool.txt");
+       
+        
+        //Test the returned BOOL, and check the NSError if the write failed
+        if(success){
+            NSLog(@"Done writing to /tmp/cool.txt");
+        } else {
+             NSLog(@"Writing to /tmp/cool.txt failed: %@", error);
+        }
+        
     }
     return 0;
 }
