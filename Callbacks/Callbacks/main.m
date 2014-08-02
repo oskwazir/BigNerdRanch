@@ -14,6 +14,11 @@ int main(int argc, const char * argv[]) {
         
         BNRLogger *logger = [[BNRLogger alloc] init];
         
+        [[NSNotificationCenter defaultCenter] addObserver:logger
+                                                 selector:@selector(zoneChange:)
+                                                     name:NSSystemTimeZoneDidChangeNotification
+                                                   object:nil];
+        
         NSURL *url = [NSURL URLWithString:@"http://www.gutenberg.org/cache/epub/45631/pg45631.txt"];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:url];
