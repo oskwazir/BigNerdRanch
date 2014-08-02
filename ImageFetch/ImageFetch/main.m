@@ -35,6 +35,10 @@ int main(int argc, const char * argv[]) {
         
         NSLog(@"Success");
         
+        NSData *readData = [NSData dataWithContentsOfFile:@"/tmp/ps_logo2.png"];
+        
+        NSLog(@"The file read from disk is %lu bytes long",(unsigned long)[readData length]);
+        
         
     
     }
