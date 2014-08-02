@@ -8,8 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^ArrayEnumerationBlock)(id, NSUInteger, BOOL *);
-
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
         //create an array of strings and one for devowelized ones
@@ -23,19 +21,9 @@ int main(int argc, const char * argv[]) {
         //create a list of characters to be removed from the strings
         NSArray *vowels = @[@"a",@"e",@"i",@"o",@"u"];
         
-        //declare the block variable
-        ArrayEnumerationBlock devowelizer = ^(id string, NSUInteger i, BOOL *stop){
+        //Now lets iterate over the originalStrings array using our anonymous block!
+        [originalStrings enumerateObjectsUsingBlock:^(id string, NSUInteger i, BOOL *stop){
             NSMutableString *newString = [NSMutableString stringWithString:string];
-            
-//            NSRange yRange = [string rangeOfString:@"y" options:NSCaseInsensitiveSearch];
-//            
-//            //did I find a y?
-//            if(yRange.location != NSNotFound){
-//                *stop = YES; //prevent further iterations
-//                return; //End this iteration
-//            }
-            
-            //iterate over the array of vowels, replacing occurrences of each vowel with an empty string
             for(NSString *vowel in vowels){
                 NSRange fullRange = NSMakeRange(0, [newString length]);
                 [newString replaceOccurrencesOfString:vowel
@@ -45,11 +33,8 @@ int main(int argc, const char * argv[]) {
             }
             
             [devowelizedStrings addObject:newString];
-        }; //this is the end of the block assignment and needs a semi-colon to terminate it
+        }];
         
-        
-        //Now lets iterate over the originalStrings array using our devowelizer block!
-        [originalStrings enumerateObjectsUsingBlock:devowelizer];
         NSLog(@"devowelized strings: %@", devowelizedStrings);
     }
     return 0;
