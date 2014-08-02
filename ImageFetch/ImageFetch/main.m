@@ -24,7 +24,9 @@ int main(int argc, const char * argv[]) {
     
         NSLog(@"The file is %lu bytes long",(unsigned long)[data length]);
         
-        BOOL written = [data writeToFile:@"/tmp/ps_logo2.png" options:0 error:&error];
+        BOOL written = [data writeToFile:@"/tmp/ps_logo2.png"
+                                 options:NSDataWritingAtomic
+                                   error:&error];
         
         if(!written){
             NSLog(@"Error when writing to file: %@",[error localizedDescription]);
