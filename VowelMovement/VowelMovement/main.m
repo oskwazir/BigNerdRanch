@@ -22,10 +22,7 @@ int main(int argc, const char * argv[]) {
         NSArray *vowels = @[@"a",@"e",@"i",@"o",@"u"];
         
         //declare the block variable
-        void (^devowelizer)(id, NSUInteger, BOOL *);
-        
-        //compose a block and assign it to the variable
-        devowelizer = ^(id string, NSUInteger i, BOOL *stop){
+        void (^devowelizer)(id, NSUInteger, BOOL *) = ^(id string, NSUInteger i, BOOL *stop){
             NSMutableString *newString = [NSMutableString stringWithString:string];
             
 //            NSRange yRange = [string rangeOfString:@"y" options:NSCaseInsensitiveSearch];
